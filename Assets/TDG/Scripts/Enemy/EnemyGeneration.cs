@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,19 @@ namespace GMTK_2025.Enemy
     public class EnemyGeneration : MonoBehaviour
     {
         [SerializeField] private GameObject[] enemyPrefabs;
+        [SerializeField] private Transform[] waypoints;
         [SerializeField] private float generationRate = 3f;
         
         private int curReleaseEnemyIndex = 0;
         private List<GameObject> enemies = new();
         private Coroutine releaseRoutine;
-        
+
+        private void Start()
+        {
+            GenerateEnemies();
+            StartRelease();
+        }
+
         public void StartRelease()
         {
             if (releaseRoutine != null)
@@ -37,8 +45,8 @@ namespace GMTK_2025.Enemy
             while (curReleaseEnemyIndex < enemies.Count)
             {
                 GameObject obj = enemies[curReleaseEnemyIndex];
-                //controller.gameObject.SetActive(true);
-                //controller.CanMove = true;
+                obj.SetActive(true);
+                
                 curReleaseEnemyIndex++;
                 
                 yield return new WaitForSeconds(generationRate);
@@ -60,9 +68,10 @@ namespace GMTK_2025.Enemy
         {
             GameObject newObj = Instantiate(enemyPrefab);
             newObj.transform.position = new Vector3(
-                transform.position.x, 
-                newObj.transform.position.y, 
+                transform.position.x,
+                newObj.transform.position.y,
                 transform.position.z);
+            newObj.GetComponent<EnemyMovement>().Initialize(waypoints);
             newObj.SetActive(false);
             return newObj;
         }
