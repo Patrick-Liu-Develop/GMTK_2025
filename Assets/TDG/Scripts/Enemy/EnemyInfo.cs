@@ -2,17 +2,18 @@ using UnityEngine;
 
 namespace GMTK_2025.Enemy
 {
-    public class EnemyInfo
+    [CreateAssetMenu(fileName = "EnemyInfo", menuName = "ScriptableObject/EnemyInfo")]
+    public class EnemyInfo: ScriptableObject
     {
-        public string Name { get; set; }
-        
-        public int Price { get; set; }
-        
-        public Vector2[] WayPoints { get; set; }
-        
-        public int Hp { get; set; }
-        
-        public float AtkRate { get; set; }
+        public string Name;
+
+        public int Price;
+
+        public Vector2[] WayPoints;
+
+        public int Hp;
+
+        public float AtkRate;
         
         public EnemyInfo(string name, int price, Vector2[] wayPoints, int hp, float atkRate)
         {

@@ -2,19 +2,15 @@ using UnityEngine;
 
 namespace GMTK_2025.Tower
 {
-    public class TowerInfo
+    [CreateAssetMenu(fileName = "TowerInfo", menuName = "ScriptableObject/TowerInfo")]
+    public class TowerInfo : ScriptableObject
     {
-        public TowerType Type { get; set; }
-        
-        public string Name { get; set; }
-        
-        public int Price { get; set; }
-        
-        public Vector2[] AtkRange { get; set; }
-        
-        public int Hp { get; set; }
-        
-        public float AtkRate { get; set; }
+        public TowerType Type;
+        public string Name;
+        public int Price;
+        public Vector2[] AtkRange;
+        public int Hp;
+        public float AtkRate;
         
         public TowerInfo(TowerType type, string name, int price, Vector2[] atkRange, int hp, float atkRate)
         {
