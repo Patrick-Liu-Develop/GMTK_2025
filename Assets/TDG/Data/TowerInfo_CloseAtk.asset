@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: TowerInfo_CloseAtk
   m_EditorClassIdentifier: 
   Type: 0
-  Name: 
+  Name: Tower_CloseAtk
   Price: 0
-  AtkRange: []
+  AtkRange:
+  - {x: 0, y: 0}
   Hp: 0
   AtkRate: 0
